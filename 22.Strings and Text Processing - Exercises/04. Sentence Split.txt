@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _4.SentenceSplit
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var text = Console.ReadLine();
+            var delimiter = Console.ReadLine();
+
+            var resultText = text.Split(new[] { delimiter }, StringSplitOptions.None);
+
+            var result = "[" + string.Join(", ", resultText)+ "]";
+
+            Console.WriteLine(result);
+        }
+    }
+}

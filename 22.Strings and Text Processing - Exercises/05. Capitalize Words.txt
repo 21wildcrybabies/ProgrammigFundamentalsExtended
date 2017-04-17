@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _5.CapitalizeWords
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var text = new List<string>();
+            var inputLine = Console.ReadLine();
+
+            while (inputLine != "end")
+            {
+                var inputParams = inputLine
+                   .Split(new char[] { ',', ' ', '=', '-', '>', ':',
+                       '~', '}', '|', '{', '`', '^', ']', '\\', '[',
+                       '?', '<', ';', '/', '.', '+', '*', ')', '(',
+                       '&', '%', '$', '#', '\"', '!' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var word in inputParams)
+                {
+                    var resultText = FirstCharToUpper(word.ToLower());
+                    text.Add(resultText);
+                }
+
+                Console.WriteLine(string.Join(", ", text));
+
+                text.Clear();
+
+                inputLine = Console.ReadLine();
+            }
+        }
+
+        public static string FirstCharToUpper(string text)
+        {
+            return text.First().ToString().ToUpper() + text.Substring(1);
+        }
+    }
+}

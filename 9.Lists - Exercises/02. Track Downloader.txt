@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrackDownloader
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] blackList = Console.ReadLine().Split(' ');
+            string songs = Console.ReadLine();
+            var list = new List<string>();
+            while (songs != "end")
+            {
+                bool contain = false;
+                for (int i = 0; i < blackList.Length; i++)
+                {
+                    if (songs.Contains(blackList[i]))
+                    {
+                        contain = true;
+                    }
+                }
+                if (contain != true)
+                {
+                    list.Add(songs);
+                }
+                songs = Console.ReadLine();
+            }
+            foreach (var a in list.OrderBy(x => x))
+            {
+                Console.WriteLine(a);
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _002.Count_Substring_Occurrences
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var input = Console.ReadLine().ToLower();
+            var token = Console.ReadLine().ToLower();
+            var count = 0;
+            var index = input.IndexOf(token);
+            while (index != -1)
+            {
+                count++;
+                index = input.IndexOf(token, index + 1);
+            }
+            Console.WriteLine(count);
+        }
+    }
+}

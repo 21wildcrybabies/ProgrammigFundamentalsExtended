@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlipListSiders
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> list = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+            for (int i = 1; i < list.Count / 2; i++)
+            {
+                int flip = list[i];
+                list[i] = list[list.Count - i - 1];
+                list[list.Count - i - 1] = flip;
+            }
+            Console.WriteLine(string.Join(" ",list));
+        }
+    }
+}

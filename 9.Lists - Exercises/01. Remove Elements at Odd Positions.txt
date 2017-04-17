@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1.RemoveElementsInOddPosition
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var words = Console.ReadLine().Split(' ').ToList();
+            var evenNums = new List<string>();
+
+            for (int index = 1; index <= words.Count - 1; index += 2)
+            {
+                foreach (var word in words)
+                {
+                    evenNums.Add(word);
+                }
+
+                Console.Write(evenNums[index]);
+            }
+            Console.WriteLine();
+        }
+    }
+}

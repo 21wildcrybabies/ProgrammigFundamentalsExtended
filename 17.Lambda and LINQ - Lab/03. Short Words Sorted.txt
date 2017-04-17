@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _03.Short_Words_Sorted
+{
+    class ShortWordsSorted
+    {
+        static void Main()
+        {
+            var input = Console.ReadLine()
+                .Split(new[] { '.', ',', ':', ';', '(', ')', '[', ']', '\"', '/', '\\', '!', '?', ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(i => i.Length < 5)
+                .Select(i => i.ToLower())
+                .OrderBy(i => i)
+                .Distinct()
+                .ToList();
+
+            Console.WriteLine(string.Join(", ",input));
+        }
+    }
+}

@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1.RegisterUsers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var registeredUsers = new Dictionary<string, DateTime>();
+            var inputLine = Console.ReadLine();
+
+            while (inputLine != "end")
+            {
+                var input = inputLine
+                    .Split(new[] { ' ', '-', '>' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+                var users = input[0];
+                var date = input[1];
+
+                DateTime data = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                registeredUsers.Add(users, data);
+
+                inputLine = Console.ReadLine();
+            }
+
+            var newDict = registeredUsers
+                .Reverse()
+                .OrderBy(x => x.Value)
+                .Take(5)
+                .OrderByDescending(x => x.Value);
+
+            foreach (var kvp in newDict)
+            {
+                Console.WriteLine(kvp.Key);
+            }
+        }
+    }
+}

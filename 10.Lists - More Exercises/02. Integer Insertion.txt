@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Integer_Insertion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var list = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+
+            var input = Console.ReadLine();
+
+            while (input != "end")
+            {
+                int firstDigit = (input.ToString()[0]) - 48;
+
+                list.Insert(firstDigit, int.Parse(input));
+
+                input = Console.ReadLine();
+            }
+
+            Console.WriteLine(string.Join(" ", list));
+        }
+    }
+}

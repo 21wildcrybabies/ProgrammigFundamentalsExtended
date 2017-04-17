@@ -1,0 +1,62 @@
+using System;
+
+namespace _02.Stateless
+{
+    public class Stateless
+    {
+        public static void Main()
+        {
+            var inputLineOne = Console.ReadLine();
+            var inputLineTwo = Console.ReadLine();
+
+            while (inputLineOne != "collapse")
+            {
+                while (inputLineTwo.Length > 0)
+                {
+                    if (inputLineOne.Contains(inputLineTwo))
+                    {
+                        inputLineOne = inputLineOne.Replace(inputLineTwo, "").Trim();
+                        if (inputLineTwo.Length > 1)
+                        {
+                            inputLineTwo = inputLineTwo.Substring(1, inputLineTwo.Length - 2);
+                        }
+                        else
+                        {
+                            inputLineTwo = "";
+                        }
+                    }
+
+                    else
+                    {
+                        if (inputLineTwo.Length > 1)
+                        {
+                            inputLineTwo = inputLineTwo.Substring(1, inputLineTwo.Length - 2);
+                        }
+                        else
+                        {
+                            inputLineTwo = "";
+                        }
+                    }
+                }
+
+                if (inputLineOne.Length == 0)
+                {
+                    Console.WriteLine("(void)");
+                }
+                else
+                {
+                    Console.WriteLine(inputLineOne);
+                }
+
+                inputLineOne = Console.ReadLine();
+
+                if (inputLineOne == "collapse")
+                {
+                    return;
+                }
+
+                inputLineTwo = Console.ReadLine();
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _3.String_Repeater
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var textString = Console.ReadLine();
+            int n = int.Parse(Console.ReadLine());
+            RepeatSring(textString, n);
+
+        }
+        static string RepeatSring(string str, int count)
+        {
+            string RepeatedString = string.Empty;
+
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write(str,count);
+            }
+
+            return RepeatedString;
+        }
+    }
+}

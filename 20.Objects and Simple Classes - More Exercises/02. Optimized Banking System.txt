@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2.OptimizedBankingSystem
+{
+    class BankAccount
+    {
+        public string Name { get; set; }
+
+        public string Bank { get; set; }
+
+        public decimal Balance { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<BankAccount> bankAcc = new List<BankAccount>();
+            string inputLine = Console.ReadLine();
+
+            while (inputLine != "end")
+            {
+                var inputParams = inputLine.Split(new[] {' ', '|'}, StringSplitOptions.RemoveEmptyEntries);
+
+                var accounts = new BankAccount
+                {
+                    Bank = inputParams[0],
+                    Name = inputParams[1],
+                    Balance = decimal.Parse(inputParams[2])
+                };
+
+                bankAcc.Add(accounts);
+
+                inputLine = Console.ReadLine();
+            }
+
+            bankAcc = bankAcc
+                .OrderByDescending(x => x.Balance)
+                .ThenBy(x => x.Bank.Length)
+                .ToList();
+
+            foreach (var acc in bankAcc)
+            {
+                Console.WriteLine("{0} -> {1} ({2})", acc.Name, acc.Balance, acc.Bank);
+            }
+        }
+    }
+}

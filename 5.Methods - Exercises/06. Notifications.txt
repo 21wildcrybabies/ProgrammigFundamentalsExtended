@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _6.Notifications
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                string currentOperation = Console.ReadLine();
+                if (currentOperation == "success")
+                {
+                    string operation = Console.ReadLine();
+                    string message = Console.ReadLine();
+                    Console.WriteLine("Successfully executed {0}.", operation);
+                    Console.WriteLine("==============================");
+                    Console.WriteLine("Message: {0}.", message);
+                }
+                else if (currentOperation == "error")
+                {
+                    var reason = string.Empty;
+                    string operation = Console.ReadLine();
+                    int code = int.Parse(Console.ReadLine());
+
+                    if (code >= 0)
+                    {
+                        reason = "Invalid Client Data";
+                    }
+                    else if (code < 0)
+                    {
+                        reason = "Internal System Failure";
+                    }
+                    Console.WriteLine("Error: Failed to execute {0}.",operation);
+                    Console.WriteLine("==============================");
+                    Console.WriteLine("Error Code: {0}.",code);
+                    Console.WriteLine("Reason: {0}.",reason);
+                }
+            }
+        }
+    }
+}
