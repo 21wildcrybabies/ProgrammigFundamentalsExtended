@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _01.Wormtest
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			var wormLenghtMeters = long.Parse(Console.ReadLine());
+			var wormWidghCentimeters = double.Parse(Console.ReadLine());
+
+			var wormLenghtCentimeters = wormLenghtMeters * 100.00;
+			var remainder = Math.Abs(wormLenghtCentimeters % wormWidghCentimeters);
+
+			if (remainder > 0)
+			{
+				var product = (wormLenghtCentimeters / wormWidghCentimeters) * 100.00;
+				Console.WriteLine($"{product:F2}%");
+			}
+			else
+			{
+				var product = wormWidghCentimeters * wormLenghtCentimeters;
+				Console.WriteLine($"{product:F2}");
+			}
+		}
+	}
+}

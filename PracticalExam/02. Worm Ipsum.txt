@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Worm_Ipsum
+{
+	class WormIpsum
+	{
+		static void Main()
+		{
+
+
+			var input = Console.ReadLine();
+
+			while (input != "Worm Ipsum")
+			{
+				var sentence = input.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+
+				var isCapitalChar = Char.IsUpper(sentence[0][0]);
+
+				if (!(sentence.Length == 1 && isCapitalChar))
+				{
+					input = Console.ReadLine();
+					continue;
+				}
+				var sent = sentence[0];
+				var shit1 = sent.IndexOf('\'');
+				var shit2 = sent.IndexOf(',');
+
+				var wordsInSentence = sentence[0].Split(new[] { ' ', '\'', ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+				for (int i = 0; i < wordsInSentence.Count; i++)
+				{
+					var word = wordsInSentence[i];
+					Dictionary<char, int> dict = new Dictionary<char, int>();
+
+					int max = 0;
+					foreach (char c in word)
+					{
+						int j;
+						dict.TryGetValue(c, out j);
+						j++;
+						if (j > max)
+						{
+							max = j;
+						}
+						dict[c] = j;
+					}
+
+					var mostOccurrenceChar = dict.OrderByDescending(x => x.Value);
+
+					var theChar = mostOccurrenceChar.First().Key.ToString().ToCharArray();
+
+					var theCount = int.Parse(mostOccurrenceChar.First().Value.ToString());
+
+					if (theCount >= 2)
+					{
+						var newWord = new string(theChar[0], word.Length);
+						var index = wordsInSentence.IndexOf(word);
+						wordsInSentence[index] = newWord;
+					}
+
+				}
+				var result = string.Join(" ", wordsInSentence) + ".";
+
+				if (shit1 != -1)
+				{
+					StringBuilder sb = new StringBuilder(result);
+					sb[shit1] = '\'';
+					result = sb.ToString();
+
+				}
+
+				if (shit2 != -1)
+				{
+					StringBuilder sb = new StringBuilder(result);
+					sb[shit2] = ',';
+					result = sb.ToString();
+					result = result.Replace(",", ", ");
+
+				}
+
+				Console.WriteLine(result);
+
+
+				input = Console.ReadLine();
+			}
+
+		}
+	}
+}
